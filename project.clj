@@ -4,6 +4,7 @@
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :dependencies [[org.clojure/clojure "1.4.0"]
+                 [clojure-csv/clojure-csv "2.0.0-alpha1"]
                  [cascalog "1.10.0"]
                  [org.apache.hadoop/hadoop-core "1.1.1"]
                  [com.twitter/maple "0.2.5"]
