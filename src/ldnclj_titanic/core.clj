@@ -10,13 +10,17 @@
 (defn split-line [line]
   (first (csv/parse-csv line)))
 
+
 (defn titanic [input]
   (<- [?survived ?pclass ?name ?sex ?age ?sibsp ?parch ?ticket ?fare ?cabin ?embarked]
       (input :> ?line)
       (split-line ?line :> ?survived ?pclass ?name ?sex ?age ?sibsp ?parch ?ticket ?fare ?cabin ?embarked)))
 
+(defn survivor-names [rows]
+  (<- [?name]
+      (rows :> "1" _ ?name _ _ _ _ _ _ _ _)))
 
 (comment
   (use 'cascalog.playground) (bootstrap-emacs)
   (?- (stdout)
-      (titanic (hfs-textline "/Users/bld/src/ldnclj-titanic/resource/train.csv" :skip-header? true))))
+      (survivor-names (titanic (hfs-textline "/Users/bld/src/ldnclj-titanic/resource/train.csv" :skip-header? true)))))
