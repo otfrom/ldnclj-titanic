@@ -10,7 +10,6 @@
 (defn split-line [line]
   (first (csv/parse-csv line)))
 
-
 (defn titanic [input]
   (<- [?survived ?pclass ?name ?sex ?age ?sibsp ?parch ?ticket ?fare ?cabin ?embarked]
       (input :> ?line)
