@@ -11,13 +11,12 @@
   (first (csv/parse-csv line)))
 
 (defn titanic [input]
-  (<- [?pclass ?name ?sex ?age ?sibsp ?parch ?ticket ?fare ?cabin ?embarked]
-      ((hfs-textline "/Users/bld/src/ldnclj-titanic/resource/test.csv" :skip-header? true) :> ?line)
-      (split-line ?line :> ?pclass ?name ?sex ?age ?sibsp ?parch ?ticket ?fare ?cabin ?embarked)))
+  (<- [?survived ?pclass ?name ?sex ?age ?sibsp ?parch ?ticket ?fare ?cabin ?embarked]
+      (input :> ?line)
+      (split-line ?line :> ?survived ?pclass ?name ?sex ?age ?sibsp ?parch ?ticket ?fare ?cabin ?embarked)))
 
 
 (comment
   (use 'cascalog.playground) (bootstrap-emacs)
   (?- (stdout)
-      (titanic (hfs-textline "/Users/bld/src/ldnclj-titanic/resource/test.csv" :skip-header? true)))
-  )
+      (titanic (hfs-textline "/Users/bld/src/ldnclj-titanic/resource/train.csv" :skip-header? true))))
